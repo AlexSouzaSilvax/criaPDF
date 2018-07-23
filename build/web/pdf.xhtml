@@ -1,0 +1,38 @@
+<!-- GUANABARA É O REI -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PDF</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form>                                              
+
+                <p style="font-family:Agency FB; font-size:26px;">Programa para pegar um texto e converter para .pdf</p>
+                <!-- <br/>Utilizando a api 'itextpdf-5.4.0'</p> -->               
+                <p:outputLabel value="Nome: " style="font-family:Agency FB;"></p:outputLabel> 
+                <p:inputText id="nome" value="#{pDF.nome}" style="font-family:Agency FB;"></p:inputText><p/>                        
+                <p:inputTextarea id="editor" widgetVar="editorWidget" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{pDF.conteudo}" />
+                <h:panelGrid columns="2" style="margin-top:10px" >
+                    <p:commandButton id="converter" value="Converter" update="display"
+                                     action="#{pDF.convertePdf()}" style="background:#0a3acd; color:white; font-family:Agency FB;" />                                
+                    <p:commandButton id="limpar" value="Limpar" type="button"
+                                     onclick="PF('editorWidget').clear();" style="background:windowframe; color:white; font-family:Agency FB;"/>                                                               
+                </h:panelGrid>
+                <p:dialog header="Conteúdo" widgetVar="dlg" showEffect="fade" hideEffect="fade">
+                    <h:outputText id="display"  value="#{pDF.conteudo}" escape="false" />                                
+                </p:dialog>                               
+                <!-- <p style="color:red; font-size:25px; font-family:Agency FB;">GUANABARA É O REI ♛</p> -->                
+            </h:form>            
+        </h:body>
+    </f:view>
+</html>
+
