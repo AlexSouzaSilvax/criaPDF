@@ -23,6 +23,7 @@ public class PDF {
         try {
             PdfWriter.getInstance(document, new FileOutputStream("C:\\Projetos\\NOVO\\criaPDF\\PDF\\" + nome + ".pdf"));
             document.open();
+            //Paragraph texto = new Paragraph("                                                                      " + nome + "\n\n\n " + conteudo);  Pura gambiarra hueheheheheheueheuh
             Paragraph texto = new Paragraph(conteudo);
             document.add(texto);
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Arquivo " + getNome(), "Convertido com Sucesso.");
@@ -33,6 +34,11 @@ public class PDF {
             System.out.println(e);
         }
         document.close();
+    }
+
+    public void limpar() {
+        setNome("");
+        setConteudo("");
     }
 
     public String getNome() {

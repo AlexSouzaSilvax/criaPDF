@@ -14,7 +14,7 @@
             </f:facet>
         </h:head>
         <h:body>
-            <h:form>                                              
+            <h:form id="form">                                              
 
                 <p style="font-family:Agency FB; font-size:26px;">Programa para pegar um texto e converter para .pdf</p>
                 <!-- <br/>Utilizando a api 'itextpdf-5.4.0'</p> -->               
@@ -22,12 +22,12 @@
                 <p:inputText id="nome" value="#{pDF.nome}" style="font-family:Agency FB;"></p:inputText><p/>                        
                 <p:inputTextarea id="editor" widgetVar="editorWidget" rows="10" cols="50" queryDelay="750" minQueryLength="4" value="#{pDF.conteudo}" />
                 <h:panelGrid columns="2" style="margin-top:10px" >
-                    <p:commandButton id="converter" value="Converter" update="display"
+                    <p:commandButton id="converter" value="Converter" update="display form"
                                      action="#{pDF.convertePdf()}" style="background:#0a3acd; color:white; font-family:Agency FB;" />                                
                     <p:commandButton id="limpar" value="Limpar" type="button"
-                                     onclick="PF('editorWidget').clear();" style="background:windowframe; color:white; font-family:Agency FB;"/>                                                               
+                                     action="#{pDF.limpar()}" style="background:windowframe; color:white; font-family:Agency FB;" update="@form"/>                                                               
                 </h:panelGrid>
-                <p:dialog header="Conteúdo" widgetVar="dlg" showEffect="fade" hideEffect="fade">
+                <p:dialog header="Conteúdo" widgetVar="dlg" showEffect="fade" hideEffect="fade" >
                     <h:outputText id="display"  value="#{pDF.conteudo}" escape="false" />                                
                 </p:dialog>                               
                 <!-- <p style="color:red; font-size:25px; font-family:Agency FB;">GUANABARA É O REI ♛</p> -->                
